@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+	<link rel = "stylesheet" type = "text/css" href = "bookentry.css">
+    <meta charset="utf-8">
+	<title> bookEntry </title>
+
+  </head>
+  
+  <body>
+  <h1>Buch anlegen </h1>
+	<form action= "http://martinakraus.net/createBookEntry.php" method ="get" >
+	<p>Buchtitel<input type="text"  name="Buchtitel"/> </p>
+	<p>Buchautor <input type="text" name="autor"/> </p>
+	<p>ISBN <input type="number" name="isbn"/> </p>
+	<p>Kapitel <input type="number" name="kapitel"/> </p>
+	<p>Erscheinungsjahr <input type="number" name="jahr"/> </p>
+	<p>Auflage <input type="number" name="auflage"/> </p>
+	<p>Art des Buches <select name="art">
+				<option value="ebook">eBook</option>
+				<option value="newspaper">Newspaper</option>
+				<option value="taschenbuch" >Taschenbuch</option>
+				<option value="lexikon" >Lexikon</option>
+				<option value="hardcover" selected = "selected">Hardcover</option>
+				<option value="paperback" >Paperback</option>
+				</select></p>
+	<p>Genre<br/> <div id= "checkboxstyle">
+			<input type="checkbox" name="genre" value="horror" checked="checked"/>Horror<br/>
+			<input type="checkbox" name="genre" value="psycho"/>Psycho<br/>
+			<input type="checkbox" name="genre" value="krimi" />Krimi<br/>
+			<input type="checkbox" name="genre" value="doku"/>Doku<br/>
+			<input type="checkbox" name="genre" value="komödie" />Komödie<br/>
+			<input type="checkbox" name="genre" value="romanze"/>Romanze<br/> </div>
+	
+	</p>
+	<p>Dein Vorname <input type="text" name="vorname"/> </p>
+	<p>Dein Nachname <input type="text" name="name"/> </p>
+	<p>Mein Favorit<input type="checkbox" name="filmfavorit"/> </p>
+	
+
+	
+	<div id= "buttonstyle">
+	<button type="button" name="absenden" value="Absenden"/>Absenden </button> </div>
+	
+
+	
+	</form>
+	
+  
+   
+  </body>
+</html>
