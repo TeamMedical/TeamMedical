@@ -9,15 +9,31 @@
   </head>
   
   <body>
-  <h1>Buch anlegen </h1>
+ 
 	<form action= "http://martinakraus.net/createBookEntry.php" method ="get" >
-	<p>Buchtitel<input type="text"  name="Buchtitel"/> </p>
-	<p>Buchautor <input type="text" name="autor"/> </p>
-	<p>ISBN <input type="number" name="isbn"/> </p>
-	<p>Kapitel <input type="number" name="kapitel"/> </p>
-	<p>Erscheinungsjahr <input type="number" name="jahr"/> </p>
-	<p>Auflage <input type="number" name="auflage"/> </p>
-	<p>Art des Buches <select name="art">
+
+ <h1>Buch anlegen </h1>
+	
+	<p><label for= "titel">Buchtitel</label>
+	<input type="text"  name="titel"/></p>
+	
+	<p><label for= "autor">Buchautor </label>
+	<input  type="text" name="autor"/>  </p>
+	
+	<p><label for="isbn">ISBN </label>
+	<input  type="number" name="isbn"/> </p>
+	
+	<p><label for="kapitel" >Kapitel</label>
+	<input type="number" name="kapitel"/> </p>
+	
+	<p><label for= "jahr">Erscheinungsjahr </label>
+	<input  type="number" name="jahr"/> </p>
+	
+	<p><label for="auflage" >Auflage </label>
+	<input  type="number" name="auflage"/> </p>
+	
+	<p><label for="art">Art des Buches</label>
+	<select  name="art">
 				<option value="ebook">eBook</option>
 				<option value="newspaper">Newspaper</option>
 				<option value="taschenbuch" >Taschenbuch</option>
@@ -25,22 +41,26 @@
 				<option value="hardcover" selected = "selected">Hardcover</option>
 				<option value="paperback" >Paperback</option>
 				</select></p>
-	<p>Genre<br/> <div id= "checkboxstyle">
+				
+	<p><label for="genre">Genre</label><br/> <div id= "checkboxstyle">
 			<input type="checkbox" name="genre" value="horror" checked="checked"/>Horror<br/>
 			<input type="checkbox" name="genre" value="psycho"/>Psycho<br/>
 			<input type="checkbox" name="genre" value="krimi" />Krimi<br/>
 			<input type="checkbox" name="genre" value="doku"/>Doku<br/>
 			<input type="checkbox" name="genre" value="komödie" />Komödie<br/>
-			<input type="checkbox" name="genre" value="romanze"/>Romanze<br/> </div>
+			<input type="checkbox" name="genre" value="romanze"/>Romanze<br/> </div></p>
+			
+	<p><label for="vorname">Dein Vorname</label>
+	<input type="text" name="vorname"/> </p>
 	
-	</p>
-	<p>Dein Vorname <input type="text" name="vorname"/> </p>
-	<p>Dein Nachname <input type="text" name="name"/> </p>
-	<p>Mein Favorit<input type="checkbox" name="filmfavorit"/> </p>
+	<p><label for="name">Dein Nachname</label>
+	<input type="text" name="name"/> </p>
+	
+	<p><label for="filmfavorit">Mein Favorit</label>
+	<input type="checkbox" name="filmfavorit"/> </p>
 	
 
 	
-	<div id= "buttonstyle">
 	<input type="submit" value="Absenden"> </div>
 	
 
