@@ -14,25 +14,34 @@
 
  <h1>Buch anlegen </h1>
 	
-	<p><label for= "titel">Buchtitel</label>
-	<input type="text"  name="titel"/></p>
+	<label for= "titel">Buchtitel</label>
+	<input type="text"  name="titel"/>
 	
-	<p><label for= "autor">Buchautor </label>
-	<input  type="text" name="autor"/>  </p>
+	<label for="vorname">Dein Vorname</label>
+	<input type="text" name="vorname"/> <br/><br/>
 	
-	<p><label for="isbn">ISBN </label>
-	<input  type="number" name="isbn"/> </p>
+	<label for= "autor">Buchautor </label>
+	<input  type="text" name="autor"/>  
 	
-	<p><label for="kapitel" >Kapitel</label>
-	<input type="number" name="kapitel"/> </p>
+	<label for="name">Dein Nachname</label>
+	<input type="text" name="name"/> <br/><br/>
 	
-	<p><label for= "jahr">Erscheinungsjahr </label>
-	<input  type="number" name="jahr"/> </p>
+	<label for="isbn">ISBN </label>
+	<input  type="number" name="isbn"/> 
 	
-	<p><label for="auflage" >Auflage </label>
-	<input  type="number" name="auflage"/> </p>
+	<label for="filmfavorit">Mein Favorit</label>
+	<input type="checkbox" name="filmfavorit"/> <br/><br/>
 	
-	<p><label for="art">Art des Buches</label>
+	<label for="kapitel" >Kapitel</label>
+	<input type="number" name="kapitel"/> <br/><br/>
+	
+	<label for= "jahr">Erscheinungsjahr </label>
+	<input  type="number" name="jahr"/> <br/><br/>
+	
+	<label for="auflage" >Auflage </label>
+	<input  type="number" name="auflage"/> <br/><br/>
+	
+	<label for="art">Art des Buches</label>
 	<select  name="art">
 				<option value="ebook">eBook</option>
 				<option value="newspaper">Newspaper</option>
@@ -40,27 +49,24 @@
 				<option value="lexikon" >Lexikon</option>
 				<option value="hardcover" selected = "selected">Hardcover</option>
 				<option value="paperback" >Paperback</option>
-				</select></p>
+				</select><br/><br/>
 				
-	<p><label for="genre">Genre</label><br/> <div id= "checkboxstyle">
-			<input type="checkbox" name="genre" value="horror" checked="checked"/>Horror<br/>
+	<label for="genre">Genre</label> <div id= "checkboxstyle">
+			<input type="checkbox" name="genre" value="horror" checked="checked"/>Horror
 			<input type="checkbox" name="genre" value="psycho"/>Psycho<br/>
 			<input type="checkbox" name="genre" value="krimi" />Krimi<br/>
 			<input type="checkbox" name="genre" value="doku"/>Doku<br/>
 			<input type="checkbox" name="genre" value="komödie" />Komödie<br/>
-			<input type="checkbox" name="genre" value="romanze"/>Romanze<br/> </div></p>
+			<input type="checkbox" name="genre" value="romanze"/>Romanze<br/> </div><br/><br/>
 			
-	<p><label for="vorname">Dein Vorname</label>
-	<input type="text" name="vorname"/> </p>
 	
-	<p><label for="name">Dein Nachname</label>
-	<input type="text" name="name"/> </p>
 	
-	<p><label for="filmfavorit">Mein Favorit</label>
-	<input type="checkbox" name="filmfavorit"/> </p>
+	
+	
+	
 	
 
-	
+	<div id="buttonstyle">
 	<input type="submit" value="Absenden"> </div>
 	
 
