@@ -4,18 +4,17 @@
   <head>
 	<link rel = "stylesheet" type = "text/css" href = "bookentry.css">
     <meta charset="utf-8">
-	<title> bookEntry </title>
+	<title> book Entry </title>
 
   </head>
   
   <body>
  
 	<form action= "http://martinakraus.net/createBookEntry.php" method ="get" >
-
- <h1>Buch anlegen </h1><br/><br/><br/><br/>
+	<h1>Buch anlegen </h1><br/><br/><br/><br/>
 	
 	<label for= "titel">Buchtitel</label>
-	<input type="text"  name="titel"/>
+	<input type="text"  name="titel" />
 	
 	<label for="vorname">Dein Vorname</label>
 	<input type="text" name="vorname"/> <br/><br/>
@@ -42,24 +41,24 @@
 	<input  type="number" name="auflage"/> <br/><br/>
 	
 	<!--Hier muss noch die Größe des Buttons angeasst werden (muss breiter werden)-->
-	<label for="art">Art des Buches</label>
-	<select  name="art" >
+	<label for="art"  >Art des Buches</label>
+	<select  name="art" ><span id="Dropdownstye">
 				<option value="ebook">eBook</option>
 				<option value="newspaper">Newspaper</option>
 				<option value="taschenbuch" >Taschenbuch</option>
 				<option value="lexikon" >Lexikon</option>
 				<option value="hardcover" selected = "selected">Hardcover</option>
 				<option value="paperback" >Paperback</option>
-				</select><br/><br/>
+				</select> </span> <br/><br/>
 		
 	<!--checkbox müssen noch formatiert werden-->
-<label for="genre">Genre</label> <span id="checkboxstyle">
+<label for="genre">Genre</label> <div id="checkboxstyle">
 		<input type="checkbox" name="genre" value="horror" checked="checked"/>Horror
-		<input  type="checkbox" name="genre" value="doku"/>Doku<br/>
+		<input type="checkbox" name="genre" value="doku"/>Doku<br/>
 		<input type="checkbox" name="genre" value="psycho"/>Psycho
 		<input type="checkbox" name="genre" value="komödie" />Komödie<br/>
 		<input type="checkbox" name="genre" value="krimi" />Krimi
-		<input type="checkbox" name="genre" value="romanze"/>Romanze<br/> </span><br/><br/>
+		<input type="checkbox" name="genre" value="romanze"/>Romanze</span> <br/><br/><br/>
 			
 	
 	
@@ -67,7 +66,7 @@
 	
 	<!--Muss noch angepasst werden-->
 	<div id="buttonstyle">
-	<input  type="submit" value="Absenden"> </div>
+	<input  type="submit" value="Absenden" class="button1"></div>
 	
 
 	

@@ -7,7 +7,17 @@ h1{ font-size:22px;color: rgb(63,72,204); text-indent:320px;font-weight:bolder;}
 label {display: inline-block; width:20em;}
 #checkboxstyle{color:rgb(0,0,0); font-size:14px;}
 #buttonstyle{text-align: center ;}
-
+#Dropdownstyle{padding-right:20px;}
+.button1 {
+	padding:0;
+	margin:0;
+	width:300px;
+	font-size:20px;
+	border-style: solid;
+    border-color: rgb(63,72,204);
+    border-width: 10px;
+	background-color:  rgb(0,162,232;
+	}
 
 
 
