@@ -1,16 +1,19 @@
-body{ background-color : rgb(153,217,234);font-family:Helvetica;}
-h1{text-align: center; font-size:22px;font-weight:bold;}
+body{ background-color : rgb(153,217,234);}
+h1{text-align: center; font-size:22px;}
 h2{text-align: center; font-size:72px; color: rgb(63,72,204); }
-#Bild{text-align:center;}
-
-
-.rahmen{border-style: solid;
+img{text-align:center;border-style: solid;
          border-color: rgb(63,72,204);
-         border-width: 10px;}
+         border-width: 10px;
+		 vertical-align:middle;
+		 width:400;
+		 height:245;}
+
+
+
 .Farbig{color:rgb(63,72,204);}
 
 button{
-    font-size:18px;
+  font-size:18px;
 	font-weight:bold;
 	border-style: solid;
     border-color: rgb(63,72,204);
