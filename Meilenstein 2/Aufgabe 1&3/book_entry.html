@@ -3,14 +3,16 @@
 
   <head>
 	<link rel = "stylesheet" type = "text/css" href = "bookentry.css">
-    <meta charset="utf-8">
+	<script type = "text/javascript" src = "Formularüberprüfung.js"  ></script>
+	<meta charset="utf-8">
 	<title> book Entry </title>
+	
 
   </head>
   
   <body>
  
-	<form action= "http://martinakraus.net/createBookEntry.php" method ="get" >
+	<form name= "formular" action= "http://martinakraus.net/createBookEntry.php" method ="get" onsubmit="return formularüberprüfung()">
 	<h1>Buch anlegen </h1>
 	
 	   <div class="Links">
