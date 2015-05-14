@@ -13,6 +13,7 @@
 
         // Beim Seitenaufruf wird die Funktion ausgefuehrt.
         window.onload = function () {
+	
 		
             // horror_books.json-Datei wird mit "GET" geladen.
             request.open("GET", "horror_books.json", false);
@@ -20,7 +21,7 @@
             request.send();
 
             // Die Daten der JSON-Datei werden ausgelesen und die Daten von horrordata aus dieser JSON-Datei in der Variable horror gespeichert.
-            var horrorbook = JSON.parse(xml.responseText);
+            var horrorbook = JSON.parse(request.responseText);
             horrorbook = horrorbook.horrordata;
 
             // roman_books.json-Datei wird mit "GET" geladen.
@@ -35,21 +36,13 @@
             // Die Variablen mit den Daten, die in die Tabellen sollen, werden an die Funktion zur Tabellenerzeugung uebergeben.
             tabellenAnlegen(horrorbook, "horrorbook");
             tabellenAnlegen(romanbook, "romanbook");
-
+			
+			
+			document.getElementById("tabelle").style.visibility= "hidden";
             
         }
 
-        /**
-         * Funktion zum Wechseln auf die Tabelle Horror.
-         */
-        function loadHorror() {
-            // Die jeweilige Tabelle wird ein- bzw. ausgeblendet und die Hintergrundfarbe des Buttons geaendert, so dass sichtbar ist, welcher gedrueckt ist.
-            document.getElementById("tabelle1").style.visibility = "hidden";
-            document.getElementById("tabelle2").style.visibility = "visible";
-            document.getElementById("buttonHorror").style.backgroundColor = "#3f48cc";
-            document.getElementById("buttonRoman").style.backgroundColor = "#00a2e8";
-
-        }
+        
 
        
         function tabellenAnlegen(jsondatei, buchArt) {
@@ -63,9 +56,9 @@
 
                 // Zur uebergebenen Variable wird die jeweilige Tabelle gewaehlt.
                 if (buchArt == "horrorbook") {
-                    document.getElementById("tabelle").appendChild(tr);
-                } else if (buchArt == "romanbook") {
                     document.getElementById("tabelleZwei").appendChild(tr);
+                } else if (buchArt == "romanbook") {
+                    document.getElementById("tabelle").appendChild(tr);
                 }
 
                 // Ein neues Element mit Tabellendaten wird erstellt.
@@ -91,16 +84,60 @@
 				 // Ein neues Element mit Tabellendaten wird erstellt.
                 var spalte3 = document.createElement("TD");
                 // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
-                var spalte3Daten = document.createTextNode(jsondatei[i].autor);
+                var spalte3Daten = document.createTextNode(jsondatei[i].kapitel);
                 // Daten werden an das Element angefuegt.
-                spalte3.appendChild(spalte1Daten);
+                spalte3.appendChild(spalte3Daten);
                 // Das Element wird an die Tabellenreihe angefuegt.
                 document.getElementById("tr" + i).appendChild(spalte3);
-
-                
-            }
+				
+				 // Ein neues Element mit Tabellendaten wird erstellt.
+                var spalte4 = document.createElement("TD");
+                // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
+                var spalte4Daten = document.createTextNode(jsondatei[i].buchart);
+                // Daten werden an das Element angefuegt.
+                spalte4.appendChild(spalte4Daten);
+                // Das Element wird an die Tabellenreihe angefuegt.
+                document.getElementById("tr" + i).appendChild(spalte4);
+				
+				 // Ein neues Element mit Tabellendaten wird erstellt.
+                var spalte5 = document.createElement("TD");
+                // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
+                var spalte5Daten = document.createTextNode(jsondatei[i].ISBN);
+                // Daten werden an das Element angefuegt.
+                spalte5.appendChild(spalte5Daten);
+                // Das Element wird an die Tabellenreihe angefuegt.
+                document.getElementById("tr" + i).appendChild(spalte5);
+				
+				 // Ein neues Element mit Tabellendaten wird erstellt.
+                var spalte6 = document.createElement("TD");
+                // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
+                var spalte6Daten = document.createTextNode(jsondatei[i].erscheinungsjahr);
+                // Daten werden an das Element angefuegt.
+                spalte6.appendChild(spalte6Daten);
+                // Das Element wird an die Tabellenreihe angefuegt.
+                document.getElementById("tr" + i).appendChild(spalte6);
+				
+				 // Ein neues Element mit Tabellendaten wird erstellt.
+                var spalte7 = document.createElement("TD");
+                // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
+                var spalte7Daten = document.createTextNode(jsondatei[i].auflage);
+                // Daten werden an das Element angefuegt.
+                spalte7.appendChild(spalte7Daten);
+                // Das Element wird an die Tabellenreihe angefuegt.
+                document.getElementById("tr" + i).appendChild(spalte7);
+			}
         }
 
+			function ButtonsHorrorbooks(){
+				document.getElementById("tabelle").style.visibility="hidden";
+				document.getElementById("tabelleZwei").style.visibility="visible";				
+				}
+				
+				function ButtonsRomanbooks(){
+				document.getElementById("tabelleZwei").style.visibility="hidden";
+				document.getElementById("tabelle").style.visibility="visible";
+				
+				}
 
     </script>
 
@@ -108,18 +145,14 @@
 </head>
 
 <body>
-<h1 class="center">Meine Bücher</h1>
-<br>
+<h1 >Meine Bücher</h1>
 
-<div class="center">
-    <button class="buttonsBuchgenre" onclick="loadHorror()" id="buttonHorror">Horror</button>
-    <button class="buttonsBuchgenre" onclick="loadRoman()" id="buttonRoman">Roman</button>
-    <br>
-    <br>
-</div>
 
-<div class="center">
-    <table id="tabelle1" class="center" border="1">
+ <button  onclick="ButtonsHorrorbooks()" id="button1" >Horror </button>
+  <button  onclick="ButtonsRomanbooks()" id="button2" >Roman</button>
+
+
+    <table id="tabelle"  border="1">
         <tr>
             <th>Autor</th>
             <th>Titel</th>
@@ -131,9 +164,9 @@
         </tr>
 
     </table>
-</div>
 
-<table id="tabelle2" class="center" border="1">
+
+<table id="tabelleZwei"  border="1">
     <tr>
         <th>Autor</th>
         <th>Titel</th>
@@ -145,6 +178,8 @@
     </tr>
 
 </table>
+
+
 
 </body>
 

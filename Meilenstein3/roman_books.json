@@ -1,4 +1,4 @@
-{"romandata": [
+ï»¿{"romandata": [
 	{
 	"autor": "Paulo Coelho",
 	"titel": "Der Alchimist",
@@ -9,7 +9,7 @@
 	"auflage": 3
 	},
 	{
-	"autor": "Friedrich Dürrenmatt",
+	"autor": "Friedrich DÃ¼rrenmatt",
 	"titel": "Die Physiker", 
 	"kapitel": 2,
 	"buchart": "Taschenbuch",
@@ -46,7 +46,7 @@
 	},
 	{
 	"autor": "Hermann Hesse",
-	"titel": "Wer lieben kann, ist glücklich",
+	"titel": "Wer lieben kann, ist glÃ¼cklich",
 	"kapitel": 22,
 	"buchart": "Hardcover",
 	"ISBN": 9783518033863,
@@ -55,7 +55,7 @@
 	},
 	{
 	"autor": "Hermann Hesse",
-	"titel": "Eigensinn macht Spaß",
+	"titel": "Eigensinn macht SpaÃŸ",
 	"kapitel": 11,
 	"buchart": "Hardcover",
 	"ISBN": 9783518035856,
