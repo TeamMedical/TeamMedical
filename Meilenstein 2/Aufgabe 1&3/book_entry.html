@@ -10,107 +10,7 @@
 	
 
 
-<script>
 
-
-function formularüberprüfung() {
-    var check = true;
-    var missing = [];
-
-
-
-
-
-
-    if(!document.getElementById('Vorname1').getText().matches('[A-Z|a-z|\s]*')) {
-	check = false
-  	} else if(!document.getElementById('name1').getText().matches('[A-Z|a-z|\s]*')) {
-	check = false
-  	} else if(!document.getElementById('buchtitel').getText().matches('.*')) {
-	check = false
-   	}else if(!document.getElementById('buchautor').getText().matches('[A-Z|a-z|\s]*')) {
-	check = false
-   	}else if(!document.getElementById('jahr').getText().matches('[0-9]{3,4}') && document.getElementById('jahr').getText() <= 2015) {
-	check = false
-   	}else if(!document.getElementById('isbn').getText().matches('[0-9]{0,13}')) {
-	check = false
-   	}else if(!document.getElementById('auflage').getText().matches('[0-9][0-9]|[0-9]')) {
-	check = false
-   	}
-
-
-    $("input").each(function () {
-            var localcheck = true;
-
-            if ($(this) != "undefined" && $(this).hasClass("cursiv")) {
-                localcheck = false;
-            } else {
-                switch ($(this).attr("id")) {
-                    case 'emailId':
-                        if (!$("#emailId").val().match("^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$")) {
-                            localcheck = false;
-                        }
-                        break;
-                    case 'handyId':
-                        if (!$("#handyId").val().match("^[0-9]{4,5}[/. \-]*[0-9]+$")) {
-                            localcheck = false;
-                        }
-                        break;
-                    case 'matrikelnrId':
-                        if (!$("#matrikelnrId").val().match("^[0-9]{7}$")) {
-                            localcheck = false;
-                        }
-                        break;
-                }
-            }
-
-            if (!localcheck) {
-                $(this).addClass("error");
-                missing.push($(this).attr("name"));
-
-                if (check) {
-                    $(this).focus();
-                    check = localcheck;
-                }
-
-            } else {
-                $(this).removeClass("error");
-            }
-        }
-    )
-
-    if (!check) {
-        alert("Fehler bei der Eingabe der Felder:\n" + missing.join(", "));
-    }
-    return check;
-}
-
-
-function formularüberprüfung(){
- 
-var check = true
-  if(!document.getElementById('Vorname1').getText().matches('[A-Z|a-z|\s]*')) {
-	check = false
-  } else if(!document.getElementById('name1').getText().matches('[A-Z|a-z|\s]*')) {
-	check = false
-  } else if(!document.getElementById('buchtitel').getText().matches('.*')) {
-	check = false
-   }else if(!document.getElementById('buchautor').getText().matches('[A-Z|a-z|\s]*')) {
-	check = false
-   }else if(!document.getElementById('jahr').getText().matches('[0-9]{3,4}') && document.getElementById('jahr').getText() <= 2015) {
-	check = false
-   }else if(!document.getElementById('isbn').getText().matches('[0-9]{0,13}')) {
-	check = false
-   }else if(!document.getElementById('auflage').getText().matches('[0-9][0-9]|[0-9]')) {
-	check = false
-   }
-  return check
-}
-
-
-
-
-</script>
 
   </head>
   
@@ -150,7 +50,7 @@ var check = true
 	
 	
 	<div class="Rechts">
-	<p> Dein Vorname <input class ="rechteFormularfelder" id="Vorname1" type="text" name="vorname"/ required placeholder="Bitte geben Sie Ihren Vornamen ein"> </p>
+	<p> Dein Vorname <input class ="rechteFormularfelder" id="Vorname1" type="text" name="vorname"/> </p>
 	<p> Dein Nachname <input class ="rechteFormularfelder"type="text" id="name1" name="name"/> </p>
 	<p> Mein Favorit <input class ="rechteFormularfelder" type="checkbox" name="filmfavorit"/> </p></div>
 	
