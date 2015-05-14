@@ -1,29 +1,133 @@
+
 <!DOCTYPE html>
 <html lang="de">
 
   <head>
 	<link rel = "stylesheet" type = "text/css" href = "bookentry.css">
-	<script type = "text/javascript" src = "formularüberprüfung.js"  ></script>
+	<script type = "text/javascript" src = "Formularüberprüfung.js"  ></script>
 	<meta charset="utf-8">
 	<title> book Entry </title>
 	
+
+
+<script>
+
+
+function formularüberprüfung() {
+    var check = true;
+    var missing = [];
+
+
+
+
+
+
+    if(!document.getElementById('Vorname1').getText().matches('[A-Z|a-z|\s]*')) {
+	check = false
+  	} else if(!document.getElementById('name1').getText().matches('[A-Z|a-z|\s]*')) {
+	check = false
+  	} else if(!document.getElementById('buchtitel').getText().matches('.*')) {
+	check = false
+   	}else if(!document.getElementById('buchautor').getText().matches('[A-Z|a-z|\s]*')) {
+	check = false
+   	}else if(!document.getElementById('jahr').getText().matches('[0-9]{3,4}') && document.getElementById('jahr').getText() <= 2015) {
+	check = false
+   	}else if(!document.getElementById('isbn').getText().matches('[0-9]{0,13}')) {
+	check = false
+   	}else if(!document.getElementById('auflage').getText().matches('[0-9][0-9]|[0-9]')) {
+	check = false
+   	}
+
+
+    $("input").each(function () {
+            var localcheck = true;
+
+            if ($(this) != "undefined" && $(this).hasClass("cursiv")) {
+                localcheck = false;
+            } else {
+                switch ($(this).attr("id")) {
+                    case 'emailId':
+                        if (!$("#emailId").val().match("^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}$")) {
+                            localcheck = false;
+                        }
+                        break;
+                    case 'handyId':
+                        if (!$("#handyId").val().match("^[0-9]{4,5}[/. \-]*[0-9]+$")) {
+                            localcheck = false;
+                        }
+                        break;
+                    case 'matrikelnrId':
+                        if (!$("#matrikelnrId").val().match("^[0-9]{7}$")) {
+                            localcheck = false;
+                        }
+                        break;
+                }
+            }
+
+            if (!localcheck) {
+                $(this).addClass("error");
+                missing.push($(this).attr("name"));
+
+                if (check) {
+                    $(this).focus();
+                    check = localcheck;
+                }
+
+            } else {
+                $(this).removeClass("error");
+            }
+        }
+    )
+
+    if (!check) {
+        alert("Fehler bei der Eingabe der Felder:\n" + missing.join(", "));
+    }
+    return check;
+}
+
+
+function formularüberprüfung(){
+ 
+var check = true
+  if(!document.getElementById('Vorname1').getText().matches('[A-Z|a-z|\s]*')) {
+	check = false
+  } else if(!document.getElementById('name1').getText().matches('[A-Z|a-z|\s]*')) {
+	check = false
+  } else if(!document.getElementById('buchtitel').getText().matches('.*')) {
+	check = false
+   }else if(!document.getElementById('buchautor').getText().matches('[A-Z|a-z|\s]*')) {
+	check = false
+   }else if(!document.getElementById('jahr').getText().matches('[0-9]{3,4}') && document.getElementById('jahr').getText() <= 2015) {
+	check = false
+   }else if(!document.getElementById('isbn').getText().matches('[0-9]{0,13}')) {
+	check = false
+   }else if(!document.getElementById('auflage').getText().matches('[0-9][0-9]|[0-9]')) {
+	check = false
+   }
+  return check
+}
+
+
+
+
+</script>
 
   </head>
   
   <body>
  
-	<form action= "http://martinakraus.net/createBookEntry.php" method ="get" onsubmit="formularüberprüfung()">
+	<form name= "formular" action= "http://martinakraus.net/createBookEntry.php" method ="get" onsubmit="return formularüberprüfung()">
 	<h1>Buch anlegen </h1>
 	
 	   <div class="Links">
 	
-		<p> Buchtitel <input class ="linkeFormularfelder" type="text" id="titel" name="titel"/></p>
-		<p> Buchautor <input class ="linkeFormularfelder" type="text" id="autor" name="autor"/> </p>
+		<p> Buchtitel <input class ="linkeFormularfelder" id="buchtitel" type="text" name="titel"/></p>
+		<p> Buchautor <input class ="linkeFormularfelder" id="buchautor" type="text" name="autor"/> </p>
 		<p> ISBN <input class ="linkeFormularfelder" type="number" id="isbn" name="isbn"/> </p>
-		<p> Kapitel <input class ="linkeFormularfelder"type="number" id="kapitel" name="kapitel"/> </p>
-		<p> Erscheinungsjahr <input  class ="linkeFormularfelder"type="number" id="jahr" name="jahr"/></p>
+		<p> Kapitel <input class ="linkeFormularfelder"type="number" name="kapitel"/> </p>
+		<p> Erscheinungsjahr <input  class ="linkeFormularfelder" id="jahr" type="number" name="jahr"/></p>
 		<p> Auflage <input class ="linkeFormularfelder" type="number" id="auflage" name="auflage"/> </p>
-		<p>Art des Buches <select class= "linkeFormularfelder" id="art" name="art" >
+		<p>Art des Buches <select class= "linkeFormularfelder" name="art" >
 				<option value="ebook">eBook</option>
 				<option value="newspaper">Newspaper</option>
 				<option value="taschenbuch" >Taschenbuch</option>
@@ -46,15 +150,15 @@
 	
 	
 	<div class="Rechts">
-	<p> Dein Vorname <input class ="rechteFormularfelder" type="text" id="vorname" name="vorname"/> </p>
-	<p> Dein Nachname <input class ="rechteFormularfelder"type="text" id="name" name="name"/> </p>
-	<p> Mein Favorit <input class ="rechteFormularfelder" type="checkbox" id="filmfavorit" name="filmfavorit"/> </p></div>
+	<p> Dein Vorname <input class ="rechteFormularfelder" id="Vorname1" type="text" name="vorname"/ required placeholder="Bitte geben Sie Ihren Vornamen ein"> </p>
+	<p> Dein Nachname <input class ="rechteFormularfelder"type="text" id="name1" name="name"/> </p>
+	<p> Mein Favorit <input class ="rechteFormularfelder" type="checkbox" name="filmfavorit"/> </p></div>
 	
 	
 
 		
 	
-	<p> <input  type="submit" value="Absenden" class="button1" onclick="return formularüberprüfung(this.form, this.form.vorname, this.form.nachname, this.form.titel, this.form.autor, this.form.isbn, this.form.jahr, this.form.auflage)";></p>
+	<p> <input  type="submit" value="Absenden" class="button1"></p>
 	
 
 	</form>
