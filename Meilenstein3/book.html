@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="vonbook.css" type="text/css">
+    <script type="text/javascript" src="roman_books.json"></script>
+    <script type="text/javascript" src="horror_books.json"></script>
+    <meta charset="UTF-8">
+    <title>book</title>
+
+    <script>
+		
+        // Variable zum Laden der JSON-Dateien über HTTP.
+        var request = new XMLHttpRequest();
+
+        // Beim Seitenaufruf wird die Funktion ausgefuehrt.
+        window.onload = function () {
+		
+            // horror_books.json-Datei wird mit "GET" geladen.
+            request.open("GET", "horror_books.json", false);
+            // Daten werden uebertragen.
+            request.send();
+
+            // Die Daten der JSON-Datei werden ausgelesen und die Daten von horrordata aus dieser JSON-Datei in der Variable horror gespeichert.
+            var horrorbook = JSON.parse(xml.responseText);
+            horrorbook = horrorbook.horrordata;
+
+            // roman_books.json-Datei wird mit "GET" geladen.
+            request.open("GET", "roman_books.json", false);
+            // Daten werden uebertragen.
+            request.send();
+
+            // Die Daten der JSON-Datei werden ausgelesen und die Daten von romandata aus dieser JSON-Datei in der Variable roman gespeichert.
+            var romanbook = JSON.parse(request.responseText);
+            romanbook = romanbook.romandata;
+
+            // Die Variablen mit den Daten, die in die Tabellen sollen, werden an die Funktion zur Tabellenerzeugung uebergeben.
+            tabellenAnlegen(horrorbook, "horrorbook");
+            tabellenAnlegen(romanbook, "romanbook");
+
+            
+        }
+
+        /**
+         * Funktion zum Wechseln auf die Tabelle Horror.
+         */
+        function loadHorror() {
+            // Die jeweilige Tabelle wird ein- bzw. ausgeblendet und die Hintergrundfarbe des Buttons geaendert, so dass sichtbar ist, welcher gedrueckt ist.
+            document.getElementById("tabelle1").style.visibility = "hidden";
+            document.getElementById("tabelle2").style.visibility = "visible";
+            document.getElementById("buttonHorror").style.backgroundColor = "#3f48cc";
+            document.getElementById("buttonRoman").style.backgroundColor = "#00a2e8";
+
+        }
+
+       
+        function tabellenAnlegen(jsondatei, buchArt) {
+            // Solange noch Datenobjekte in der Variable daten vorhanden sind, sollen die Daten in die Tabelle eingetragen werden.
+            for (var i = 0; i < jsondatei.length; i++) {
+                // Erzeugung eines jeweiligen Elementes für die Tabellenreihe.
+                var tr = document.createElement("TR");
+
+                // Die Variable erhaelt als ID die Bezeichnung "tabellenReihe" mit der Nummer des Datenobjektes aus der Variable des Schleifendurchlaufes.
+                tr.setAttribute("id", "tr" + i);
+
+                // Zur uebergebenen Variable wird die jeweilige Tabelle gewaehlt.
+                if (buchArt == "horrorbook") {
+                    document.getElementById("tabelle").appendChild(tr);
+                } else if (buchArt == "romanbook") {
+                    document.getElementById("tabelleZwei").appendChild(tr);
+                }
+
+                // Ein neues Element mit Tabellendaten wird erstellt.
+                var spalte1 = document.createElement("TD");
+                // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
+                var spalte1Daten = document.createTextNode(jsondatei[i].autor);
+                // Daten werden an das Element angefuegt.
+                spalte1.appendChild(spalte1Daten);
+                // Das Element wird an die Tabellenreihe angefuegt.
+                document.getElementById("tr" + i).appendChild(spalte1);
+				
+				
+				
+				 // Ein neues Element mit Tabellendaten wird erstellt.
+                var spalte2 = document.createElement("TD");
+                // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
+                var spalte2Daten = document.createTextNode(jsondatei[i].titel);
+                // Daten werden an das Element angefuegt.
+                spalte2.appendChild(spalte2Daten);
+                // Das Element wird an die Tabellenreihe angefuegt.
+                document.getElementById("tr" + i).appendChild(spalte2);
+				
+				 // Ein neues Element mit Tabellendaten wird erstellt.
+                var spalte3 = document.createElement("TD");
+                // Der Inhalt des aktuellen Datenobjektes in der Variable daten bei dem Autor wird in der Variable gespeichert.
+                var spalte3Daten = document.createTextNode(jsondatei[i].autor);
+                // Daten werden an das Element angefuegt.
+                spalte3.appendChild(spalte1Daten);
+                // Das Element wird an die Tabellenreihe angefuegt.
+                document.getElementById("tr" + i).appendChild(spalte3);
+
+                
+            }
+        }
+
+
+    </script>
+
+    <title>book</title>
+</head>
+
+<body>
+<h1 class="center">Meine Bücher</h1>
+<br>
+
+<div class="center">
+    <button class="buttonsBuchgenre" onclick="loadHorror()" id="buttonHorror">Horror</button>
+    <button class="buttonsBuchgenre" onclick="loadRoman()" id="buttonRoman">Roman</button>
+    <br>
+    <br>
+</div>
+
+<div class="center">
+    <table id="tabelle1" class="center" border="1">
+        <tr>
+            <th>Autor</th>
+            <th>Titel</th>
+            <th>Kapitel</th>
+            <th>Art des Buches</th>
+            <th>ISBN</th>
+            <th>Erscheinungsjahr</th>
+            <th>Auflage</th>
+        </tr>
+
+    </table>
+</div>
+
+<table id="tabelle2" class="center" border="1">
+    <tr>
+        <th>Autor</th>
+        <th>Titel</th>
+        <th>Kapitel</th>
+        <th>Art des Buches</th>
+        <th>ISBN</th>
+        <th>Erscheinungsjahr</th>
+        <th>Auflage</th>
+    </tr>
+
+</table>
+
+</body>
+
+
+</html>

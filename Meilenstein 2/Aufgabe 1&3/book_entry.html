@@ -3,7 +3,7 @@
 
   <head>
 	<link rel = "stylesheet" type = "text/css" href = "bookentry.css">
-	<script type = "text/javascript" src = "Formularüberprüfung.js"  ></script>
+	<script type = "text/javascript" src = "formularüberprüfung.js"  ></script>
 	<meta charset="utf-8">
 	<title> book Entry </title>
 	
@@ -12,18 +12,18 @@
   
   <body>
  
-	<form name= "formular" action= "http://martinakraus.net/createBookEntry.php" method ="get" onsubmit="return formularüberprüfung()">
+	<form action= "http://martinakraus.net/createBookEntry.php" method ="get" onsubmit="formularüberprüfung()">
 	<h1>Buch anlegen </h1>
 	
 	   <div class="Links">
 	
-		<p> Buchtitel <input class ="linkeFormularfelder" type="text" name="titel"/></p>
-		<p> Buchautor <input class ="linkeFormularfelder" type="text" name="autor"/> </p>
-		<p> ISBN <input class ="linkeFormularfelder" type="number" name="isbn"/> </p>
-		<p> Kapitel <input class ="linkeFormularfelder"type="number" name="kapitel"/> </p>
-		<p> Erscheinungsjahr <input  class ="linkeFormularfelder"type="number" name="jahr"/></p>
-		<p> Auflage <input class ="linkeFormularfelder" type="number" name="auflage"/> </p>
-		<p>Art des Buches <select class= "linkeFormularfelder" name="art" >
+		<p> Buchtitel <input class ="linkeFormularfelder" type="text" id="titel" name="titel"/></p>
+		<p> Buchautor <input class ="linkeFormularfelder" type="text" id="autor" name="autor"/> </p>
+		<p> ISBN <input class ="linkeFormularfelder" type="number" id="isbn" name="isbn"/> </p>
+		<p> Kapitel <input class ="linkeFormularfelder"type="number" id="kapitel" name="kapitel"/> </p>
+		<p> Erscheinungsjahr <input  class ="linkeFormularfelder"type="number" id="jahr" name="jahr"/></p>
+		<p> Auflage <input class ="linkeFormularfelder" type="number" id="auflage" name="auflage"/> </p>
+		<p>Art des Buches <select class= "linkeFormularfelder" id="art" name="art" >
 				<option value="ebook">eBook</option>
 				<option value="newspaper">Newspaper</option>
 				<option value="taschenbuch" >Taschenbuch</option>
@@ -46,15 +46,15 @@
 	
 	
 	<div class="Rechts">
-	<p> Dein Vorname <input class ="rechteFormularfelder" type="text" name="vorname"/> </p>
-	<p> Dein Nachname <input class ="rechteFormularfelder"type="text" name="name"/> </p>
-	<p> Mein Favorit <input class ="rechteFormularfelder" type="checkbox" name="filmfavorit"/> </p></div>
+	<p> Dein Vorname <input class ="rechteFormularfelder" type="text" id="vorname" name="vorname"/> </p>
+	<p> Dein Nachname <input class ="rechteFormularfelder"type="text" id="name" name="name"/> </p>
+	<p> Mein Favorit <input class ="rechteFormularfelder" type="checkbox" id="filmfavorit" name="filmfavorit"/> </p></div>
 	
 	
 
 		
 	
-	<p> <input  type="submit" value="Absenden" class="button1"></p>
+	<p> <input  type="submit" value="Absenden" class="button1" onclick="return formularüberprüfung(this.form, this.form.vorname, this.form.nachname, this.form.titel, this.form.autor, this.form.isbn, this.form.jahr, this.form.auflage)";></p>
 	
 
 	</form>
