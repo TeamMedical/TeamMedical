@@ -1,0 +1,2 @@
+test, hallo, 1, hardcover, 12312, 2014, 1; 
+test, hallo, 1, hardcover, 12312, 2014, 1; 
