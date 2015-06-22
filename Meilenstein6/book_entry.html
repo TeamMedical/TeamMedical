@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+	<link rel = "stylesheet" type = "text/css" href = "bookentry.css">
+	<meta charset="utf-8">
+	<title> book Entry </title>
+	
+	<script>
+	//Überprüft die Eingaben des Users auf korrektheit und gibt dementsprechend einen boolean Wert zurück. 
+	function formularüberprüfung() {
+    var überprüfung = true;
+    
+    //Ladet alle Input Felder
+    var eingabe = document.getElementsByTagName("input");
+
+    //Durchläuft alle Input Felder
+    for (var i = 0; i < eingabe.length; i++) {
+        var lokalüberprüfung = true;
+        //Ignoriert Input Felder welche für die folgenden Überprüfungen nicht bernötigt werden,
+		//da sie leer sind.
+        if (eingabe[i] == "undefined" ) {
+            lokalüberprüfung = false;
+        } else {
+            //Prüfe in Abhängigkeit der ID, mit Regex ob Eingabe stimmt
+            switch (eingabe[i].id) {
+                case 'vorname':
+                    if (!eingabe[i].value.match('[A-Z|a-z]+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+                case 'name':
+                    if (!eingabe[i].value.match('[A-Z|a-z]+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+					
+				case 'buchautor':
+                    if (!eingabe[i].value.match('[A-Z|a-z]+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+                case 'buchtitel':
+                    if (!eingabe[i].value.match('.+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+					
+				 case 'isbn':
+                    if (!eingabe[i].value.match('^[0-9]{1,13}$')) {
+
+                        lokalüberprüfung = false;
+                    }
+                    break;
+                
+                case 'jahr':
+                   
+                    if (!(eingabe[i].value.match('[0-9]{3,4}'))) {
+                        lokalüberprüfung = false;
+                    } else {
+                        if(eingabe[i].value > 2015) {
+                            lokalüberprüfung = false;
+                        }
+                    }
+                    break;
+               
+                case 'auflage':
+                    if (!eingabe[i].value.match('[0-9][0-9]|[0-9]')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+            }
+            if (!lokalüberprüfung) {
+                //Falls Eingabe nicht stimmt ändere CSS Klasse
+                eingabe[i].className = "FormularfelderFehler";
+				
+              
+
+                if (überprüfung) {
+                    //Fokussiere das falsche Element. Hierbei wird immer das erste falsche Element fokussiert
+                    eingabe[i].focus();
+                    überprüfung = lokalüberprüfung;
+					alert("Einige Eingaben sind fehlerhaft. Bitte überprüfen Sie ihre Eingaben");
+                }
+
+            } else {
+                //Setze ansonsten die alte CSS Klasse
+                eingabe[i].className = "linkeFormularfelder";
+				eingabe[i].className = "rechteFormularfelder";
+			
+            }
+        }
+    }
+ 
+    return überprüfung;
+}
+
+
+
+
+	</script>
+
+
+ </head>
+ 
+  
+  <body>
+ 
+	<form name= "formular" action= "buchanlegen.php" method ="get" onsubmit="return formularüberprüfung()">
+	<h1>Buch anlegen </h1>
+	
+	   <div class="Links">
+	
+		<p> Buchtitel <input class ="linkeFormularfelder" id="buchtitel" type="text" name="titel"/></p>
+		<p> Buchautor <input class ="linkeFormularfelder" id="buchautor" type="text" name="autor"/> </p>
+		<p> ISBN <input class ="linkeFormularfelder" type="number" id="isbn" name="isbn"/> </p>
+		<p> Kapitel <input class ="linkeFormularfelder"type="number" name="kapitel"/> </p>
+		<p> Erscheinungsjahr <input  class ="linkeFormularfelder" id="jahr" type="number" name="jahr"/></p>
+		<p> Auflage <input class ="linkeFormularfelder" type="number" id="auflage" name="auflage"/> </p>
+		<p>Art des Buches <select class= "linkeFormularfelder" name="art" >
+				<option value="ebook">eBook</option>
+				<option value="newspaper">Newspaper</option>
+				<option value="taschenbuch" >Taschenbuch</option>
+				<option value="lexikon" >Lexikon</option>
+				<option value="hardcover" selected = "selected">Hardcover</option>
+				<option value="paperback" >Paperback</option>
+				</select> </p>
+		<p>Genre</p>
+		<div class="linkecheckboxen">
+		<input type="checkbox" name="genre"  checked="checked"/>Horror<br/>
+		<input type="checkbox" name="genre"  />Psycho<br/>
+		<input type="checkbox" name="genre"   />Krimi<br/></div>
+			
+		<div class="rechtecheckboxen">	
+		<input type="checkbox" name="genre" />Doku<br/>
+		<input type="checkbox" name="genre"  />Komödie<br/>
+		<input type="checkbox" name="genre"/>Romanze</div>
+	
+	
+	
+	
+	<div class="Rechts">
+	<p> Dein Vorname <input class ="rechteFormularfelder" id="vorname" type="text" name="vorname"/> </p>
+	<p> Dein Nachname <input class ="rechteFormularfelder"type="text" id="name" name="name"/> </p>
+	<p> Mein Favorit <input class ="rechteFormularfelder" type="checkbox" name="filmfavorit"/> </p></div>
+	
+	
+
+		
+	
+	<p> <input  type="submit" value="Absenden" class="button1"></p>
+	
+
+	</form>
+	
+  
+	
+   
+  </body>
+</html>
