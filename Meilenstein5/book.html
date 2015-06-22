@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="bookcss.css" type="text/css">
+    <script type="text/javascript" src="roman_books.json"></script>
+    <script type="text/javascript" src="horror_books.json"></script>
+    <meta charset="UTF-8">
+    <title>Meine Bücher</title>
+
+    <script>
+       
+           
+
+        // Funktion wird erst dann aufgerufen wenn die Seite vollständig geladen ist.
+		//Funktion zum laden der JSON Datei
+            window.onload=function method() {            
+            loaddata('horror_');
+
+            document.getElementById("tabelle").style.visibility = "hidden";
+            document.getElementById("buttonHorror").style.backgroundColor = "rgb(63,72,204)";
+
+        }
+
+
+			function loaddata(buchArt){
+			var request = new XMLHttpRequest();
+
+            // horror Books werden mit get geladen          
+			request.open("GET", "getBooks.php?datei="+buchArt, true);
+            
+			// Übertragung der Daten
+				request.onreadystatechange=function() {
+
+					if((request.readyState== 4)&& (request.status== 200)&& (request.responseText!=null)) {
+					var buchgenre = JSON.parse(request.responseText);
+					if("horror_"== buchArt){        
+					var buch=buchgenre.horrordata;
+					}
+					if("roman_"== buchArt){
+					var buch=buchgenre.romandata;
+					}
+				tabellenAnlegen(buch, buchArt);
+
+				}
+			}
+	
+	  request.send(); 
+	
+       
+       
+
+}
+        //Schaltet auf die Horror Tabelle um
+        function loadHorror() {
+           
+            document.getElementById("tabelle").style.visibility = "hidden";
+            document.getElementById("tabelleZwei").style.visibility = "visible";
+            document.getElementById("buttonHorror").style.backgroundColor = "rgb(63,72,204)";
+            document.getElementById("buttonRoman").style.backgroundColor = "rgb(0,162,232)";
+
+        }
+
+      //Schaltet auf die Roman Tabelle um
+        function loadRoman() {
+          loaddata('roman_');
+
+
+            document.getElementById("tabelleZwei").style.visibility = "hidden";
+            document.getElementById("tabelle").style.visibility = "visible";
+            document.getElementById("buttonHorror").style.backgroundColor = "rgb(0,162,232)";
+            document.getElementById("buttonRoman").style.backgroundColor = "rgb(63,72,204)";
+        }
+
+      //Funktion zur erzeugung der Tabellen
+        function tabellenAnlegen(jsondatei, buchgenre) {
+            // Alle Daten von der Variable daten(Datenobjekte der JSON Datei) werden einzeln durchlaufen und in die Tabelle eingetragen
+            for (var i = 0; i < jsondatei.length; i++) {
+                // Erstellt Element TR(Zeile)
+                var tr = document.createElement("TR");
+
+                // Diese Zeile erhält eine Attribute um die Zeilen unterneinander zu unterscheiden. Die Attribute ID wird auf den Wert tr gesetzt.
+                tr.setAttribute("id", "tr" + i);
+
+                // Unterscheidung der zwei tabellen
+                if (buchgenre == "roman_") {
+                    document.getElementById("tabelle").appendChild(tr);
+                } else if (buchgenre == "horror_") {
+                    document.getElementById("tabelleZwei").appendChild(tr);
+                }
+
+                // Erstellt Element TD(Spalte) in der die Autoren vergeben werden.
+                var spalte1 = document.createElement("TD");
+                // Inhalt der JSON Datei kommt in die Variable(Autor)
+                var spalte1Daten = document.createTextNode(jsondatei[i].autor);
+                // Inhalt vom JSON Objekt kommt in die spalte
+                spalte1.appendChild(spalte1Daten);
+                // sucht ID der Tabellenzeile und fügt spalte in die tabellenzeile ein.
+                document.getElementById("tr" + i).appendChild(spalte1);
+				
+				//titel
+                var spalte2 = document.createElement("TD");
+                var spalte2Daten = document.createTextNode(jsondatei[i].titel);
+                spalte2.appendChild(spalte2Daten);
+                document.getElementById("tr" + i).appendChild(spalte2);
+				
+				//kapitel
+                var spalte3 = document.createElement("TD");
+                var spalte3Daten = document.createTextNode(jsondatei[i].kapitel);
+				spalte3.appendChild(spalte3Daten);
+                document.getElementById("tr" + i).appendChild(spalte3);
+				
+				//buchart
+                var spalte4 = document.createElement("TD");
+                var spalte4Daten = document.createTextNode(jsondatei[i].buchart);
+                spalte4.appendChild(spalte4Daten);
+                document.getElementById("tr" + i).appendChild(spalte4);
+
+                //ISBN
+				var spalte5 = document.createElement("TD");
+                var spalte5Daten = document.createTextNode(jsondatei[i].ISBN);
+                spalte5.appendChild(spalte5Daten);
+                document.getElementById("tr" + i).appendChild(spalte5);
+
+				//erscheinungsjahr
+                var spalte6 = document.createElement("TD");
+                var spalte6Daten = document.createTextNode(jsondatei[i].erscheinungsjahr);
+                spalte6.appendChild(spalte6Daten);
+                document.getElementById("tr" + i).appendChild(spalte6);
+
+				//auflage
+                var spalte7 = document.createElement("TD");
+                var spalte7Daten = document.createTextNode(jsondatei[i].auflage);
+                spalte7.appendChild(spalte7Daten);
+                document.getElementById("tr" + i).appendChild(spalte7);
+
+                // Die Schriftfarbe wird auf blau gesetzt.
+                document.getElementById("tr" + i).style.color = "rgb(63,72,204)";
+            }
+        }
+
+    </script>
+
+    <title>book</title>
+</head>
+
+<body>
+<h1>Meine Bücher</h1>
+<br>
+
+<div class="gesamtbutton">
+    <button onclick="loadHorror()" id="buttonHorror">Horror</button>
+    <button onclick="loadRoman()" id="buttonRoman">Roman</button>
+    </div>
+
+
+    <table id="tabelle"  border="1">
+        <tr>
+            <th>Autor</th>
+            <th>Titel</th>
+            <th>Kapitel</th>
+            <th>Art des Buches</th>
+            <th>ISBN</th>
+            <th>Erscheinungsjahr</th>
+            <th>Auflage</th>
+        </tr>
+
+    </table>
+</div>
+
+<table id="tabelleZwei"  border="1">
+    <tr>
+        <th>Autor</th>
+        <th>Titel</th>
+        <th>Kapitel</th>
+        <th>Art des Buches</th>
+        <th>ISBN</th>
+        <th>Erscheinungsjahr</th>
+        <th>Auflage</th>
+    </tr>
+
+</table>
+
+</body>
+
+
+</html>
