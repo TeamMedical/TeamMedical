@@ -51,9 +51,9 @@ function erstelleJsonDatei($dateiname, $sqlBefehl, $genreName)
     }
     fwrite($jsonDatei, "\n]\n}");
 }
-$_file = $_GET["file"];
-$_filename = $_file.'books.json';
-$_genre = file_get_contents($_filename);
+$_datei = $_GET["datei"];
+$_dateiname = $_fdatei.'books.json';
+$_buchArt = file_get_contents($_dateiname);
 
-echo $_genre;
+echo $_buchArt;
 ?>
