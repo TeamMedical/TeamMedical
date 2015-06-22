@@ -13,8 +13,8 @@ $vorname = $_GET["vorname"];
 $nachname = $_GET["name"];
 $favorit;
 
-$aktuellesJahr = date("Y");
-if($jahr < 0 || $jahr > $aktuellesJahr){
+$jahreszeit = date("Y");
+if($jahr < 0 || $jahr > $jahreszeit){
     $jahr = null;
 }
 if(!preg_match("/^[A-Z][a-z]+$/",$vorname)){
@@ -41,28 +41,28 @@ if(isset($_GET["filmfavorit"])){
 }
 
 // Herstellung der DB Verbindung
-$datenbankVerbindung = mysql_connect("localhost", "root", "");
-mysql_set_charset('UTF-8', $datenbankVerbindung);
+$dbVerbindung = mysql_connect("localhost", "sena", "teammedical");
+mysql_set_charset('UTF-8', $dbVerbindung);
 // Wahl der mybooks Datenbank
 mysql_select_db('mybooks') or die ("Fehler beim Zugriff auf die Datenbank!");
 mysql_query("SET NAMES 'utf8'");
 
 //String zur Eintragung in die DB
-$insertBuch = "INSERT INTO book (titel, autor, isbn, kapitel, jahr, auflage, art, genre) VALUES ('$titel', '$autor','$isbn', '$kapitel', '$jahr', '$auflage', '$art', '$genre');";
+$insertbook = "INSERT INTO book (titel, autor, isbn, kapitel, jahr, auflage, art, genre) VALUES ('$titel', '$autor','$isbn', '$kapitel', '$jahr', '$auflage', '$art', '$genre');";
 // eintragen in die DB
-$eintragung = mysql_query($insertBuch);
+$eintragung = mysql_query($insertbook);
 
-$selectBenutzer = "SELECT benutzerID FROM user WHERE vorname = '".$vorname."' AND nachname = '". $nachname."';";
-$abfrageBenutzer = mysql_query($selectBenutzer);
+$selectuser = "SELECT benutzerID FROM user WHERE vorname = '".$vorname."' AND nachname = '". $nachname."';";
+$abfrageuser = mysql_query($selectuser);
 
 if(mysql_num_rows($abfrageBenutzer) == 0){
-    $insertBenutzer = "INSERT INTO user (vorname, nachname) VALUES ('$vorname','$nachname');";
-    $eintragungBenutzer = mysql_query($insertBenutzer);
-    $abfrageBenutzer = mysql_query($selectBenutzer);
-    $user = mysql_fetch_object($abfrageBenutzer);
+    $insertuser= "INSERT INTO user (vorname, nachname) VALUES ('$vorname','$nachname');";
+    $eintragunguser = mysql_query($insertuser);
+    $abfrageuser = mysql_query($selectuser);
+    $user = mysql_fetch_object($abfrageuser);
     $benutzerID = $user->benutzerID;
 }else{
-    $user = mysql_fetch_object($abfrageBenutzer);
+    $user = mysql_fetch_object($abfrageuser);
     $benutzerID = $user->benutzerID;
 }
 
@@ -74,3 +74,4 @@ $buchID = $book->buchID;
 $insertBenutzerBuch = "INSERT INTO userbooks (benutzerID, buchID, favorit) VALUES ('$benutzerID','$buchID',$favorit)";
 
 
+?>

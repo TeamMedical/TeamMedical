@@ -5,15 +5,15 @@ header('Content-Type: application/json');
 
 
 // Herstellung der Verbindung mit der Datenbank, die auf localhost, mit dem Nutzer root und ohne Passwort laeuft.
-$datenbankVerbindung = mysql_connect("localhost", "root", "");
-mysql_set_charset('UTF-8', $datenbankVerbindung);
+$dbVerbindung = mysql_connect("localhost", "sena", "teammedical");
+mysql_set_charset('UTF-8', $dbVerbindung);
 // Die Datenbank "mybooks" wird gewaehlt.
 mysql_select_db('mybooks') or die ("Fehler beim Zugriff auf die Datenbank!");
 mysql_query("SET NAMES 'utf8'");
 
 // Die beiden Strings mit dem MySQL-Befehl zur Abfrage der Datensaetze des jeweiligen Genres aus der Datenbank
-$abfrageHorror = "SELECT * FROM buch where genre = 'Horror';";
-$abfrageRoman = "SELECT * FROM buch where genre = 'Romanze';";
+$abfrageHorror = "SELECT * FROM book where genre = 'Horror';";
+$abfrageRoman = "SELECT * FROM book where genre = 'Romanze';";
 
 erstelleJsonDatei("horror_books.json", $abfrageHorror, "horrordata");
 erstelleJsonDatei("roman_books.json", $abfrageRoman, "romandata");
